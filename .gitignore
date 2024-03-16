@@ -7,3 +7,5 @@ Assembly-CSharp-firstpass.csproj
 Temp
 Library
 Logs
+.vs
+obj
