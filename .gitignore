@@ -1,0 +1,9 @@
+﻿*.vsconfig
+2D_RPG.sln
+Assembly-CSharp.csproj
+Assembly-CSharp-Editor-firstpass.csproj
+Assembly-CSharp-firstpass.csproj
+*.csproj
+Temp
+Library
+Logs
