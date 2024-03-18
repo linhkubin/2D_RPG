@@ -46,6 +46,7 @@ public class Player : MonoBehaviour
         }
     }
 
+
     public void MoveDirect(Vector2 direct)
     {
         rb.velocity = direct * moveSpeed;
