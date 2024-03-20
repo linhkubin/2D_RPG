@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -9,6 +10,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] private Animator animator;
     [SerializeField] private Transform avatar;
+    [SerializeField] private Transform directTF;
 
     private string animName;
 
@@ -39,6 +41,8 @@ public class Player : MonoBehaviour
             {
                 ChangeFacing(direct.x > 0);
             }
+
+            directTF.up = direct;
         }
         else
         {
