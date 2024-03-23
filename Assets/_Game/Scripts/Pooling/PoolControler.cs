@@ -72,27 +72,11 @@ public enum ParticleType
 public enum PoolType
 {
     None = 0,
+    
+    BulletBase = 1,
+    BulletKnife = 2,
 
-    PlayerBullet = 1,
-    DashShadow = 2,
-    Coin = 3,
-    HpText = 20,
-    PlayerBulletAxe = 21,
-
-    EnemyRino = 40,
-    EnemyPlant_1 = 41,
-    EnemyPlant_2 = 41,
-    EnemyTrunk_1 = 42,
-    EnemyMushroom_1 = 43,
-    EnemyPig = 44,
-    EnemyPigRibbon = 45,
-
-    BulletPlant = 60,
-    BulletTrunk = 61,
-
-    BossMinotaur = 70,
-    BossMinotaur_BoxCrash = 71,
-    BossMinotaur_BulletHell = 72,
+    DamageText = 10,
 }
 
 
