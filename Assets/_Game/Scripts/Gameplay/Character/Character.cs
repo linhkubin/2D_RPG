@@ -72,4 +72,8 @@ public class Character : MonoBehaviour
     {
     }
 
+    internal void OnHit(object damage)
+    {
+        throw new NotImplementedException();
+    }
 }

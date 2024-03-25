@@ -17,6 +17,8 @@ public class Player : Character
 
     [SerializeField] WeaponBase currentWeapon;
 
+    public float Damage => damage;
+
     private List<Character> targets = new List<Character>();
     private Character target;
     private bool isControl = true;
@@ -24,12 +26,14 @@ public class Player : Character
     //Test
     int weaponIndex = 0;
     [SerializeField] SkillBase skillDash;
+    [SerializeField] SkillBase skillVotex;
 
     // Start is called before the first frame update
     void Start()
     {
         ChangeWeapon(WeaponType.Knife);
         skillDash.OnInit(this);
+        skillVotex.OnInit(this);
     }
 
     // Update is called once per frame
@@ -54,6 +58,11 @@ public class Player : Character
         if (Input.GetKeyDown(KeyCode.C))
         {
             skillDash.OnActive();
+        }
+        
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            skillVotex.OnActive();
         }
     }
 
