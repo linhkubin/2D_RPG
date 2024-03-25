@@ -77,6 +77,7 @@ public enum PoolType
     BulletKnife = 2,
 
     DamageText = 10,
+    DashShadow = 11,
 }
 
 

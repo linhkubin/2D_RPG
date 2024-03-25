@@ -2,17 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkillBase : MonoBehaviour
+public abstract class SkillBase : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public float TimeCooldown = 1f;
+    public float TimeActive = 1f;
+
+    protected Player player;
+
+    public virtual void OnInit(Player player)
     {
-        
+        this.player = player;
     }
 
-    // Update is called once per frame
-    void Update()
+    public virtual void OnDespawn()
     {
-        
+
     }
+
+    public abstract void OnActive();
+    public abstract void OnFinish();
 }

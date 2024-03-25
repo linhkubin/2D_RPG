@@ -369,6 +369,53 @@ Transform:
   m_Father: {fileID: 991082043}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &331950169
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 331950170}
+  - component: {fileID: 331950171}
+  m_Layer: 3
+  m_Name: Skill_Dash
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &331950170
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 331950169}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1724190659}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &331950171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 331950169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4535b6b42ae03a640bf89d2d11193435, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TimeCooldown: 1
+  TimeActive: 0.25
+  dashSpeed: 25
 --- !u!1 &365811257
 GameObject:
   m_ObjectHideFlags: 0
@@ -797,7 +844,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22d442602ae0f0147bb47505db78f2a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PoolNoneRoot: []
+  PoolNoneRoot:
+  - {fileID: 6177583930219741573, guid: 1f65e52e198698040baf4b923fa53a94, type: 3}
   PoolWithRoot:
   - root: {fileID: 288323702}
     prefab: {fileID: 1878189845177161428, guid: 9478de202d635b245b8a2a3db2e0934b, type: 3}
@@ -1080,7 +1128,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!4 &1094230305
 Transform:
   m_ObjectHideFlags: 0
@@ -1098,6 +1146,7 @@ Transform:
   - {fileID: 1941549211}
   - {fileID: 365811258}
   - {fileID: 1898207775}
+  - {fileID: 1724190659}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1117,11 +1166,13 @@ MonoBehaviour:
   deathTime: 0.5
   rb: {fileID: 1094230304}
   moveSpeed: 5
-  avatar: {fileID: 409728293}
-  directTF: {fileID: 837270826}
+  <Avatar>k__BackingField: {fileID: 409728293}
+  <DirectTF>k__BackingField: {fileID: 837270826}
+  <SpriteRenderer>k__BackingField: {fileID: 409728294}
   weaponHolder: {fileID: 365811258}
   weaponData: {fileID: 11400000, guid: 47e65ac194ecc8944a501bf89098b26f, type: 2}
   currentWeapon: {fileID: 0}
+  skillDash: {fileID: 331950171}
 --- !u!70 &1094230307
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1168,6 +1219,38 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1724190658
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1724190659}
+  m_Layer: 3
+  m_Name: SkillHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1724190659
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1724190658}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 331950170}
+  m_Father: {fileID: 1094230305}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1770410147
 GameObject:

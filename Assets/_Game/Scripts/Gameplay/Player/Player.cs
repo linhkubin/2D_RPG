@@ -8,8 +8,9 @@ public class Player : Character
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private float moveSpeed = 5f;
 
-    [SerializeField] private Transform avatar;
-    [SerializeField] private Transform directTF;
+    [field: SerializeField] public Transform Avatar { get; private set; }
+    [field: SerializeField] public Transform DirectTF { get; private set; }
+    [field: SerializeField] public SpriteRenderer SpriteRenderer{ get; private set; }
 
     [SerializeField] private Transform weaponHolder;
     [SerializeField] private WeaponDataSO weaponData;
@@ -18,14 +19,17 @@ public class Player : Character
 
     private List<Character> targets = new List<Character>();
     private Character target;
+    private bool isControl = true;
 
     //Test
     int weaponIndex = 0;
+    [SerializeField] SkillBase skillDash;
 
     // Start is called before the first frame update
     void Start()
     {
         ChangeWeapon(WeaponType.Knife);
+        skillDash.OnInit(this);
     }
 
     // Update is called once per frame
@@ -37,7 +41,7 @@ public class Player : Character
         Vector2 direct = new Vector2 (horizontal, vertical);
 
         ChangeDirect(direct);
-        MoveDirect(direct);
+        Move(direct);
         UpdateTarget();
 
         OnAttack();
@@ -45,6 +49,11 @@ public class Player : Character
         if (Input.GetKeyDown(KeyCode.Q))
         {
             ChangeWeapon((WeaponType)(++weaponIndex % 4));
+        }
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            skillDash.OnActive();
         }
     }
 
@@ -59,7 +68,7 @@ public class Player : Character
                 ChangeFacing(direct.x > 0);
             }
 
-            directTF.up = direct;
+            DirectTF.up = direct;
         }
         else
         {
@@ -67,15 +76,29 @@ public class Player : Character
         }
     }
 
-    public void MoveDirect(Vector2 direct)
+    public void Move(Vector2 direct)
     {
-        rb.velocity = direct * moveSpeed;
+        if (isControl)
+        {
+            rb.velocity = direct * moveSpeed;
+        }
     }
 
     private void ChangeFacing(bool isRight)
     {
-        avatar.localRotation = isRight ? Quaternion.identity : Quaternion.Euler(0f, 180f, 0f);
+        Avatar.localRotation = isRight ? Quaternion.identity : Quaternion.Euler(0f, 180f, 0f);
     }
+
+    internal void Dash(Vector3 direct, float dashSpeed)
+    {
+        rb.velocity = direct * dashSpeed;
+    }
+
+    public void SetControl(bool isControl)
+    {
+        this.isControl = isControl;
+    }
+
     #endregion
 
     #region Gun
@@ -87,7 +110,7 @@ public class Player : Character
     private void UpdateTarget()
     {
         target = GetTargetNearest();
-        currentWeapon.SetTarget(target == null ? (directTF.up + transform.position) : (target.transform.position));
+        currentWeapon.SetTarget(target == null ? (DirectTF.up + transform.position) : (target.transform.position));
     }
 
     public override void AddTarget(Character c)
